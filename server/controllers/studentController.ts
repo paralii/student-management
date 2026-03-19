@@ -14,6 +14,8 @@ function handleError(err: unknown, res: Response): void {
   }
 }
 
+type StudentParams = { id: string };
+
 export const studentController = {
   async getAll(req: Request, res: Response): Promise<void> {
     try {
@@ -24,7 +26,7 @@ export const studentController = {
     }
   },
 
-  async getOne(req: Request, res: Response): Promise<void> {
+  async getOne(req: Request<StudentParams>, res: Response): Promise<void> {
     try {
       const student = await studentService.getById(req.params['id'] ?? '');
       res.json({ success: true, data: student });
@@ -43,7 +45,7 @@ export const studentController = {
     }
   },
 
-  async update(req: Request, res: Response): Promise<void> {
+  async update(req: Request<StudentParams>, res: Response): Promise<void> {
     try {
       const dto = validateUpdateDto(req.body);
       const student = await studentService.update(req.params['id'] ?? '', dto);
@@ -53,7 +55,7 @@ export const studentController = {
     }
   },
 
-  async remove(req: Request, res: Response): Promise<void> {
+  async remove(req: Request<StudentParams>, res: Response): Promise<void> {
     try {
       await studentService.delete(req.params['id'] ?? '');
       res.json({ success: true, message: 'Student deleted successfully' });

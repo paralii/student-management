@@ -1,5 +1,5 @@
-import type { Student } from '../types/student';
-import { GRADE_COLORS } from '../types/student';
+import type { Student } from '../types/Student';
+import { GRADE_COLORS } from '../types/Student';
 
 interface StudentListProps {
   students: Student[];

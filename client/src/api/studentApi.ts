@@ -1,4 +1,4 @@
-import type { Student, StudentFormData } from '../types/student';
+import type { Student, StudentFormData } from '../types/Student.ts';
 
 const BASE = '/api/students';   // ✅ was "/students" — missing /api prefix
 

@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import type { Student, StudentFormData } from '../types/student';
-import { GRADE_OPTIONS } from '../types/student';
+import { useState } from 'react';
+import type { Student, StudentFormData } from '../types/Student';
+import { GRADE_OPTIONS } from '../types/Student';
 
 interface StudentFormProps {
   initial?: Student | null;
@@ -12,16 +12,18 @@ interface StudentFormProps {
 const empty: StudentFormData = { name: '', email: '', age: 18, grade: 'A', subject: '' };
 
 export default function StudentForm({ initial, onSubmit, onCancel, loading }: StudentFormProps) {
-  const [form, setForm] = useState<StudentFormData>(empty);
+  const [form, setForm] = useState<StudentFormData>(() =>
+    initial
+      ? {
+          name: initial.name,
+          email: initial.email,
+          age: initial.age,
+          grade: initial.grade,
+          subject: initial.subject,
+        }
+      : empty,
+  );
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    if (initial) {
-      setForm({ name: initial.name, email: initial.email, age: initial.age, grade: initial.grade, subject: initial.subject });
-    } else {
-      setForm(empty);
-    }
-  }, [initial]);
 
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

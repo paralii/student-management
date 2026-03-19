@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { Student, StudentFormData } from './types/student';
-import StudentForm from './components/StudentForm';
-import StudentList from './components/StudentList';
+import type { Student, StudentFormData } from './types/Student.ts';
+import StudentForm from './components/studentForm.tsx';
+import StudentList from './components/studentList.tsx';
 import './App.css';
 
 const API = '/api/students';
